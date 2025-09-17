@@ -1,0 +1,23 @@
+:root {
+    --ion-grid-breakpoint-sm: 640px;
+    --ion-grid-breakpoint-md: 768px;
+    --ion-grid-breakpoint-lg: 1024px;
+    --ion-grid-breakpoint-xl: 1280px;
+
+    --ion-font-size-xs: 12px;
+    --ion-font-size-sm: 14px;
+    --ion-font-size-md: 16px;
+    --ion-font-size-lg: 20px;
+    --ion-font-size-xl: 24px;
+
+    --ion-color-primary: #3880ff;
+    --ion-color-secondary: #8e8e8e;
+    --ion-color-success: #2dd36f;
+    --ion-text-color: #222428;
+
+
+    --ion-color-danger: #eb445a;
+
+    /* tailwind variables*/
+    --text-tiny: 0.425rem;
+}
