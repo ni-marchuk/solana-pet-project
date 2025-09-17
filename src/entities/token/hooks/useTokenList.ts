@@ -39,11 +39,11 @@ export const useTokenList = (): useTokenListResult => {
       /** Обновляем токен в списке */
       intervalRef.current = setInterval(() => {
         setData((prev) => {
-          const result = { ...prev };
+          const result: GetTokenListResponse = {};
           Object.entries(batchedUpdates.current).map(([key, value]) => {
-            if (result && result[key]) result[key] = { ...result[key], ...value };
+            if (prev && prev[key]) result[key] = { ...prev[key], ...value };
           });
-          return result;
+          return { ...prev, ...result };
         });
         batchedUpdates.current = {};
       }, 50);

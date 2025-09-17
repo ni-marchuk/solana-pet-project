@@ -1,4 +1,4 @@
-import { type FC, useMemo } from 'react';
+import { type FC } from 'react';
 import { IonList } from '@ionic/react';
 import { useTokenList } from '@entities/token/hooks/useTokenList.ts';
 import TokenListRow from '@features/TokenListRow.tsx';
@@ -9,9 +9,7 @@ export const TokenList: FC = () => {
   const { listData } = useTokenList();
 
   /** Обновляем список айди для перерисовки списка, после добавления токена что заминтился */
-  const ids: Array<string> = useMemo(() => {
-    return Object.keys(listData ?? {});
-  }, [listData]);
+  const ids: Array<string> =  Object.keys(listData ?? {});
 
   if (!ids) return null;
 

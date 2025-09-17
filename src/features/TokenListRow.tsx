@@ -150,24 +150,24 @@ const TokenListRow: FC<TokenListRowProps> = memo(({ data, onTrade }) => {
               <IonText color="secondary">
                 <sub>{holders}</sub>
               </IonText>
-                <div className="flex items-end">
+              <div className="flex items-end">
                   <span
                     className="flex h-4 w-4 items-center justify-center rounded-full text-tiny border border-gray-400 text-gray-400">
                     D
                   </span>
-                  <span className="ml-1 text-tiny text-gray-400">{topHoldersPercentage ?? 0}%</span>
-                </div>
+                <span className="ml-1 text-tiny text-gray-400">{topHoldersPercentage ?? 0}%</span>
+              </div>
             </div>
           </IonCol>
           {/* TRADE button */}
           <IonCol sizeXs={'12'} sizeLg={'1.5'}>
             <div className="flex flex-col items-end px-2 py-2 lg:justify-center lg:items-center">
-              <IonButton size="small" color='btn' onClick={onTrade}>
+              <IonButton size="small" color="btn" onClick={onTrade}>
                 Trade
                 <IonIcon
                   icon={analyticsOutline}
                   style={{ cursor: 'pointer', fontSize: '1rem' }}
-                  className='ml-1 text-white'
+                  className="ml-1 text-white"
                 />
               </IonButton>
             </div>
