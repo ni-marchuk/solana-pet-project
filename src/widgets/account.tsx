@@ -12,6 +12,7 @@ import { usePrivyAuth } from '@app/providers/PrivyContext';
 import { usePrivySolana } from '@entities/solana/hooks/usePrivySolana.ts';
 
 export const Account: FC = () => {
+  /** TODO тут необходимо реализовать логику используя solana wallet */
   // const {
   //   // sdk,
   //   // walletState,
@@ -27,14 +28,14 @@ export const Account: FC = () => {
 
 
   return (
-    <div className="flex flex-col container mx-auto">
+    <div className="flex flex-col container mx-auto px-4">
       <IonText>
         <h1>Account</h1>
       </IonText>
       <IonCard className="flex flex-col items-center justify-center p-6">
         {!user ? (
           <div className="flex flex-col">
-            <IonText color="secondary" className='mb-4'>
+            <IonText color="secondary" className="mb-4">
               <h3>Please log in using your email address.</h3>
             </IonText>
             <IonButton onClick={login} className="self-center">
