@@ -46,7 +46,7 @@ export const useTokenList = (): useTokenListResult => {
           return result;
         });
         batchedUpdates.current = {};
-      }, 100);
+      }, 50);
     },
     onClose: () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
