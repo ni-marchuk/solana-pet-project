@@ -1,7 +1,7 @@
 import { type FC } from 'react';
 import { IonList } from '@ionic/react';
 import { useTokenList } from '@entities/token/hooks/useTokenList.ts';
-import TokenListRow from '@features/TokenListRow.tsx';
+import TokenListRow from '@features/TokenListRow/TokenListRow.tsx';
 import { TokenListHeader } from '@features/TokenListHeader.tsx';
 
 
@@ -10,7 +10,6 @@ export const TokenList: FC = () => {
 
   /** Обновляем список айди для перерисовки списка, после добавления токена что заминтился */
   const ids: Array<string> =  Object.keys(listData ?? {});
-
   if (!ids) return null;
 
   return (

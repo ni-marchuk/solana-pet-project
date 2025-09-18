@@ -2,7 +2,7 @@ import useWebSocket from 'react-use-websocket';
 import { getMintTokenMetadata, getTokenList, type GetTokenListResponse } from '@entities/token/services.ts';
 import type { Token, TokenUpdate } from '@entities/token/types.ts';
 import { useFetch } from '@shared/hooks/useFetch.ts';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const URL = import.meta.env.VITE_WEBSOCKET_URL;
 const TOKEN = import.meta.env.VITE_WEBSOCKET_KEY;
@@ -38,18 +38,18 @@ export const useTokenList = (): useTokenListResult => {
       sendMessage(JSON.stringify({ id: 1, connect: { name: 'js', token: TOKEN } }));
       /** Обновляем токен в списке */
       intervalRef.current = setInterval(() => {
-        setData((prev) => {
-          const result: GetTokenListResponse = {};
-          Object.entries(batchedUpdates.current).map(([key, value]) => {
-            if (prev && prev[key]) result[key] = { ...prev[key], ...value };
+        const entries = Object.entries(batchedUpdates.current);
+        if (entries.length) {
+          setData((prev) => {
+            const result: GetTokenListResponse = {};
+            entries.map(([key, value]) => {
+              if (prev && prev[key]) result[key] = { ...prev[key], ...value };
+            });
+            return { ...prev, ...result };
           });
-          return { ...prev, ...result };
-        });
-        batchedUpdates.current = {};
+          batchedUpdates.current = {};
+        }
       }, 50);
-    },
-    onClose: () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
     },
     shouldReconnect: () => true,
     onMessage: (message) => {
@@ -119,6 +119,12 @@ export const useTokenList = (): useTokenListResult => {
     },
     share: true,
   });
+
+  useEffect(() => {
+    return ()=>{
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    }
+  }, []);
 
   return {
     listData: data,

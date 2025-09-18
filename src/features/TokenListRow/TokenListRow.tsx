@@ -11,7 +11,7 @@ import {
   IonIcon,
 } from '@ionic/react';
 import { analyticsOutline, copyOutline } from 'ionicons/icons';
-import { useTimeAgo } from '@shared/hooks/useTimeAgo.ts';
+import { TokenTimer } from '@features/TokenListRow/TokenTimer.tsx';
 
 type TokenListRowProps = {
   data: {
@@ -55,9 +55,6 @@ const TokenListRow: FC<TokenListRowProps> = memo(({ data, onTrade }) => {
     progress,
     topHoldersPercentage,
   } = data;
-
-  const { timeAgo } = useTimeAgo(mint_time);
-
   return (
     <IonItem className="ion-no-padding">
       <IonGrid>
@@ -72,9 +69,7 @@ const TokenListRow: FC<TokenListRowProps> = memo(({ data, onTrade }) => {
                   {photo !== '/images/empty.gif' &&
                     <img src={photo} alt={name} className="w-full h-full object-cover" />}
                 </IonAvatar>
-                <IonText color="secondary" className="text-xs whitespace-nowrap">
-                  <sub>{timeAgo}</sub>
-                </IonText>
+                <TokenTimer time={mint_time} />
               </div>
               <div className="ion-display-flex ion-flex-column">
                 <IonText>
@@ -176,6 +171,6 @@ const TokenListRow: FC<TokenListRowProps> = memo(({ data, onTrade }) => {
       </IonGrid>
     </IonItem>
   );
-});
+},(prev,next)=>prev.data === next.data);
 
 export default TokenListRow;
