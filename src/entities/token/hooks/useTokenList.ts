@@ -107,7 +107,7 @@ export const useTokenList = (): useTokenListResult => {
             }
             /** Батчим обновление данных иначе большая нагрузка на дом дерево */
             if (channel === 'meteora-tokenUpdates') {
-              if (data && data[token]) {
+              if (data) {
                 batchedUpdates.current[token] = responseData;
               }
             }
